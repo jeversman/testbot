@@ -9,8 +9,6 @@ class BotHandler:
         self.api_url = "https://api.telegram.org/bot{}/".format(token)
  
     def get_updates(self, offset=None, timeout=30):
-        print("GET UPDATES CALLED")
-        
         method = 'getUpdates'
         params = {'timeout': timeout, 'offset': offset}
         resp = requests.get(self.api_url + method, params)
@@ -39,7 +37,7 @@ greetings = ('hello', 'hi', 'greetings', 'sup')
 now = datetime.datetime.now()
  
  
-def main():  
+def main(environ, start_response):  
     new_offset = None
     today = now.day
     hour = now.hour
